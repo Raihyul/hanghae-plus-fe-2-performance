@@ -1,7 +1,28 @@
 async function loadProducts() {
     const response = await fetch("https://fakestoreapi.com/products");
     const products = await response.json();
-    displayProducts(products);  
+    displayProducts(products);
+}
+
+// jpg를 webp로 변환하는 함수
+function convertToWebp(imageUrl, altText) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "Anonymous";  // CORS 이슈 방지
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                resolve(url);
+            }, 'image/webp');
+        };
+        img.onerror = reject;
+        img.src = imageUrl;
+    });
 }
 
 function displayProducts(products) {
@@ -9,7 +30,7 @@ function displayProducts(products) {
     // Find the container where products will be displayed
     const container = document.querySelector('#all-products .container');
 
-   
+
     // Iterate over each product and create the HTML structure safely
     products.forEach(product => {
         // Create the main product div
@@ -19,11 +40,15 @@ function displayProducts(products) {
         // Create the product picture div
         const pictureDiv = document.createElement('div');
         pictureDiv.classList.add('product-picture');
-        const img = document.createElement('img');
-        img.src = product.image;
-        img.alt = `product: ${product.title}`;
-        img.width=250;
-        pictureDiv.appendChild(img);
+
+        // 이미지를 webp로 변환하는 함수 호출
+        convertToWebp(product.image, product.title).then(webpUrl => {
+            const img = document.createElement('img');
+            img.src = webpUrl;
+            img.alt = `product: ${product.title}`;
+            img.width = 250;
+            pictureDiv.appendChild(img);
+        });
 
         // Create the product info div
         const infoDiv = document.createElement('div');
@@ -60,7 +85,7 @@ function displayProducts(products) {
         container.appendChild(productElement);
     });
 
-    
+
 
 }
 
