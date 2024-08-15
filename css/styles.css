@@ -12,7 +12,7 @@ body {
     max-width: 90%;
     margin: auto;
     padding: 0 16px;
-    
+
 }
 
 
@@ -101,11 +101,6 @@ section.hero img {
     width: 100%;
     height: auto;
     filter: brightness(50%);
-    display: none;
-}
-
-section.hero img.desktop {
-    display: initial;
 }
 
 .hero-content {
@@ -158,8 +153,8 @@ section.hero img.desktop {
     font-weight: 700;
     letter-spacing: 0.4px;
     line-height: 24px;
-    text-align: center;  
-    border: none;  
+    text-align: center;
+    border: none;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -213,7 +208,7 @@ section.best-sellers .container {
     padding: 0 8px;
     flex-wrap: wrap;
     box-sizing: border-box;
-    
+
 }
 
 section.best-sellers .product-slider .product {
@@ -283,7 +278,7 @@ section.best-sellers .product-slider .product .product-info .title {
     margin-bottom: 6px;
     font-weight: normal;
     margin-top: 0;
-    
+
 }
 
 section.best-sellers .product-slider .product .product-info .price {
@@ -454,7 +449,7 @@ footer .copyright-text {
 
 
 /* **********************************
-******  CSS MEDIA QUERIES ********* 
+******  CSS MEDIA QUERIES *********
 ************************************/
 
 
@@ -472,17 +467,9 @@ footer .copyright-text {
     header nav ul li {
         display: none;
     }
-    
+
     header nav ul li.menu-icon {
         display: inline-block;
-    }
-
-    section.hero img.desktop {
-        display: none;
-    }
-
-    section.hero img.tablet {
-        display: initial;
     }
 
     .hero-content h1 {
@@ -490,25 +477,25 @@ footer .copyright-text {
         letter-spacing: 1px;
         line-height: 46px;
     }
-    
+
     .hero-content p {
         font-size: 16px;
         letter-spacing: 0.4px;
         line-height: 24px;
     }
-    
+
     .hero-content button {
         font-size: 14px;
         letter-spacing: 0.35px;
         line-height: 21px;
         width: 196px;
-        
+
     }
 
     section.best-sellers {
         padding-top: 50px;
     }
-    
+
     section.best-sellers h1 {
         font-size: 28px;
         letter-spacing: 0.7px;
@@ -526,7 +513,7 @@ footer .copyright-text {
     }
 
     section.best-sellers .product-slider .product {
-        min-width: 220px; 
+        min-width: 220px;
         margin: 17px 8px;
     }
 
@@ -536,20 +523,20 @@ footer .copyright-text {
         line-height: 30px;
         margin-bottom: 5px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .title {
         font-size: 13px;
         letter-spacing: 0.5px;
         line-height: 18px;
         margin-bottom: 8px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .price {
         font-size: 16px;
         letter-spacing: 0.4px;
         line-height: 30px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .price .original-price {
         font-size: 9px;
         letter-spacing: 0.23px;
@@ -557,7 +544,7 @@ footer .copyright-text {
         display: block;
         line-height: 14px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info button {
         height: 36px;
         width: 193px;
@@ -579,13 +566,13 @@ footer .copyright-text {
         padding: 50px 0;
         margin: 50px auto;
     }
-    
+
     section.newsletter h3 {
         font-size: 22px;
         letter-spacing: 0.55px;
         line-height: 42px;
     }
-    
+
     section.newsletter p {
         font-size: 14px;
         letter-spacing: 0.35px;
@@ -595,11 +582,11 @@ footer .copyright-text {
     footer .bottom-nav {
         padding: 50px 0;
     }
-    
+
     footer .bottom-nav .container {
         max-width: 90%;
     }
-    
+
 
 }
 /* End of Design for Tablets */
@@ -616,14 +603,6 @@ footer .copyright-text {
         height: 7px;
     }
 
-    section.hero img.tablet {
-        display: none;
-    }
-
-    section.hero img.mobile {
-        display: initial;
-    }
-
     .hero-content {
         position: static;
         margin-bottom: 40px;
@@ -638,24 +617,24 @@ footer .copyright-text {
         margin-bottom: 32px;
         margin-top: 27px;
     }
-    
+
     .hero-content p {
         display: none;
     }
-    
+
     .hero-content button {
         font-size: 14px;
         letter-spacing: 0.35px;
         line-height: 21px;
         width: 196px;
         margin: auto;
-        
+
     }
 
     section.best-sellers {
         padding-top: 64px;
     }
-    
+
     section.best-sellers .product-slider .product {
         width: 82%;
         max-width: 360px;
@@ -676,29 +655,29 @@ footer .copyright-text {
     section.best-sellers .product-slider {
         margin-top: 42px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .categories {
         margin-bottom: 7px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .title {
         font-size: 14px;
         letter-spacing: 0.54px;
         line-height: 18px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .price {
         font-size: 20px;
         font-weight: 700;
         letter-spacing: 0.5px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info .price .original-price {
         font-size: 11px;
         letter-spacing: 0.28px;
         line-height: 20px;
     }
-    
+
     section.best-sellers .product-slider .product .product-info button {
         height: 36px;
         width: 146px;
@@ -715,7 +694,7 @@ footer .copyright-text {
     section.newsletter form input {
         max-width: 65%;
     }
-    
+
     section.newsletter form button {
         max-width: 35%;
     }
@@ -734,7 +713,7 @@ footer .copyright-text {
         margin-bottom: 0;
     }
 
-   
+
 
 
 }
