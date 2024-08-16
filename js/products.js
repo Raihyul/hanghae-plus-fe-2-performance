@@ -68,6 +68,7 @@ function displayProducts(products) {
             img.width = 72;
             img.height = 72;
             img.className = 'product-image';  // 공통 클래스 추가
+            img.loading = 'lazy'; // lazy loading
 
             picture.appendChild(img);
             pictureDiv.appendChild(picture);
