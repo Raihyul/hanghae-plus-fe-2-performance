@@ -110,21 +110,23 @@ function displayProducts(products) {
     });
 }
 
-function heavyOperation(iterations, chunkSize = 10000) {
+function heavyOperation(iterations, chunkSize = 1000) {
     return new Promise((resolve) => {
         let i = 0;
         function process() {
-            const end = Math.min(i + chunkSize, iterations);
-            for (; i < end; i++) {
+            const start = performance.now();
+            while (i < iterations && performance.now() - start < 16) {
+                // 최대 16ms 동안 작업 수행 (60fps 유지를 위해)
                 const temp = Math.sqrt(i) * Math.sqrt(i);
+                i++;
             }
             if (i < iterations) {
-                setTimeout(process, 0); // 다음 프레임에서 계속
+                requestAnimationFrame(process);
             } else {
-                resolve(); // 모든 작업 완료
+                resolve();
             }
         }
-        setTimeout(process, 0); // 비동기로 시작
+        requestAnimationFrame(process);
     });
 }
 
@@ -134,18 +136,20 @@ window.onload = () => {
     window.onscroll = async () => {
         let position = productSection.getBoundingClientRect().top - (window.scrollY + window.innerHeight);
 
-        if (status == 'idle' && position <= 0) {
-            status = 'loading'; // 상태 업데이트
+        if (status === 'idle' && position <= 0) {
+            status = 'loading';
             loadProducts();
 
             try {
+                console.time('Heavy operation');
                 await heavyOperation(10000000);
+                console.timeEnd('Heavy operation');
                 console.log("Heavy operation completed");
             } catch (error) {
                 console.error("Error in heavy operation:", error);
             }
 
-            status = 'completed'; // 작업 완료 후 상태 업데이트
+            status = 'completed';
         }
     }
 }
