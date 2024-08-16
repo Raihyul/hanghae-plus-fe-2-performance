@@ -5,7 +5,7 @@ async function loadProducts() {
 }
 
 // jpg를 webp로 변환하는 함수
-function convertToWebp(imageUrl, altText) {
+function convertToWebp(imageUrl) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.crossOrigin = "Anonymous";  // CORS 이슈 방지
@@ -43,11 +43,34 @@ function displayProducts(products) {
 
         // 이미지를 webp로 변환하는 함수 호출
         convertToWebp(product.image, product.title).then(webpUrl => {
+            const picture = document.createElement('picture');
+
+            // 961px 이상
+            const source1 = document.createElement('source');
+            source1.srcset = webpUrl;
+            source1.media = '(min-width: 961px)';
+            source1.width = 154;
+            source1.height = 154;
+            picture.appendChild(source1);
+
+            // 403px 이상 576px 이하
+            const source2 = document.createElement('source');
+            source2.srcset = webpUrl;
+            source2.media = '(min-width: 403px) and (max-width: 576px)';
+            source2.width = 128;
+            source2.height = 128;
+            picture.appendChild(source2);
+
+            // 577px 이상 960px 이하 또는 402px 이하
             const img = document.createElement('img');
             img.src = webpUrl;
             img.alt = `product: ${product.title}`;
-            img.width = 250;
-            pictureDiv.appendChild(img);
+            img.width = 72;
+            img.height = 72;
+            img.className = 'product-image';  // 공통 클래스 추가
+
+            picture.appendChild(img);
+            pictureDiv.appendChild(picture);
         });
 
         // Create the product info div
