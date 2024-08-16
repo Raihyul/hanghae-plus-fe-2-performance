@@ -110,21 +110,42 @@ function displayProducts(products) {
     });
 }
 
+function heavyOperation(iterations, chunkSize = 10000) {
+    return new Promise((resolve) => {
+        let i = 0;
+        function process() {
+            const end = Math.min(i + chunkSize, iterations);
+            for (; i < end; i++) {
+                const temp = Math.sqrt(i) * Math.sqrt(i);
+            }
+            if (i < iterations) {
+                setTimeout(process, 0); // 다음 프레임에서 계속
+            } else {
+                resolve(); // 모든 작업 완료
+            }
+        }
+        setTimeout(process, 0); // 비동기로 시작
+    });
+}
+
 window.onload = () => {
     let status = 'idle';
     let productSection = document.querySelector('#all-products');
-    window.onscroll = () => {
+    window.onscroll = async () => {
         let position = productSection.getBoundingClientRect().top - (window.scrollY + window.innerHeight);
 
         if (status == 'idle' && position <= 0) {
+            status = 'loading'; // 상태 업데이트
             loadProducts();
 
-            // Simulate heavy operation. It could be a complex price calculation. <-- need to improve this
-            // This is a blocking operation that will freeze the UI
-            // how to improve this: https://ko.javascript.info/event-loop <-- use event loop
-            for (let i = 0; i < 10000000; i++) {
-                const temp = Math.sqrt(i) * Math.sqrt(i);
+            try {
+                await heavyOperation(10000000);
+                console.log("Heavy operation completed");
+            } catch (error) {
+                console.error("Error in heavy operation:", error);
             }
+
+            status = 'completed'; // 작업 완료 후 상태 업데이트
         }
     }
 }
